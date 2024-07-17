@@ -5,15 +5,14 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import locators.FABLocators;
+import stepdefinitions.Hook;
+
+import java.time.Duration;
 
 public class FABImplementation {
 
-    private WebDriver driver;
+    private final WebDriver driver = Hook.getDriver();
     public FABLocators fabLocators = new FABLocators();
-
-    public FABImplementation(WebDriver driver) {
-        this.driver = driver;
-    }
 
     public void clickOnLoginButton() {
         WebElement loginButtonElement = driver.findElement(fabLocators.loginButton);
@@ -21,7 +20,7 @@ public class FABImplementation {
     }
 
     public void elementIsClickableLoginButton() {
-        WebDriverWait wait = new WebDriverWait(driver, 10);
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         wait.until(ExpectedConditions.elementToBeClickable(fabLocators.loginButton));
     }
 }
